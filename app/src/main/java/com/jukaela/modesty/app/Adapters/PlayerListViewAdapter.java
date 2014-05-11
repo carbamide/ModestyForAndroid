@@ -50,6 +50,7 @@ public class PlayerListViewAdapter extends ArrayAdapter<Player>
         TextView rankTextView = (TextView) convertView.findViewById(R.id.rank);
 
         usernameTextView.setText(playerObject.getUsername());
+        rankTextView.setText("");
 
         try {
             for (Staff staffMember : DataMapper.getSharedInstance().getStaff()) {
@@ -69,8 +70,8 @@ public class PlayerListViewAdapter extends ArrayAdapter<Player>
             e.printStackTrace();
         }
 
-
-        File imageFilename = new File(Environment.getExternalStorageDirectory() + File.separator + playerObject.getUsername() + ".png");
+        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + ".modesty");
+        File imageFilename = new File(folder, playerObject.getUsername() + ".png");
 
         Bitmap bitmap = BitmapFactory.decodeFile(imageFilename.getAbsolutePath());
 

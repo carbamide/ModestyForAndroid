@@ -85,7 +85,12 @@ public class AvatarTask extends AsyncTask<String, Void, Bitmap> {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, bytes);
 
-        File imageFilename = new File(Environment.getExternalStorageDirectory() + File.separator + username + ".png");
+        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + ".modesty");
+
+        folder.mkdir();
+
+        File imageFilename = new File(folder, username + ".png");
+
         boolean newFile = imageFilename.createNewFile();
 
         if (newFile) {
@@ -95,7 +100,7 @@ public class AvatarTask extends AsyncTask<String, Void, Bitmap> {
             fo.close();
         }
         else {
-            Log.d("Modesty", "And error has occurred writing the file to disk");
+            Log.d("Modesty", "An error has occurred writing the file to disk");
         }
     }
 }

@@ -49,7 +49,8 @@ public class StaffListViewAdapter extends ArrayAdapter<Staff>
         usernameTextView.setText(staffObject.getUsername());
         rankTextView.setText(staffObject.getRank());
 
-        File imageFilename = new File(Environment.getExternalStorageDirectory() + File.separator + staffObject.getUsername() + ".png");
+        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + ".modesty");
+        File imageFilename = new File(folder, staffObject.getUsername() + ".png");
 
         Bitmap bitmap = BitmapFactory.decodeFile(imageFilename.getAbsolutePath());
 
