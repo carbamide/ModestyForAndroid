@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Tasks;
+package com.jukaela.modesty.app.tasks;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

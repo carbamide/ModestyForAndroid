@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Models;
+package com.jukaela.modesty.app.models;
 
 import java.util.ArrayList;
 

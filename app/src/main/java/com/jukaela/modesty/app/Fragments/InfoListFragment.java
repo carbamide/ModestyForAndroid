@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Fragments;
+package com.jukaela.modesty.app.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,21 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.jukaela.modesty.app.Activities.PluginListActivity;
-import com.jukaela.modesty.app.Activities.StaffListActivity;
-import com.jukaela.modesty.app.Adapters.InfoListViewAdapter;
-import com.jukaela.modesty.app.Models.DataMapper;
+import com.jukaela.modesty.app.activities.PluginListActivity;
+import com.jukaela.modesty.app.activities.StaffListActivity;
+import com.jukaela.modesty.app.adapters.InfoListViewAdapter;
+import com.jukaela.modesty.app.models.DataMapper;
 import com.jukaela.modesty.app.R;
 
 public class InfoListFragment extends Fragment
 {
     private OnFragmentInteractionListener mListener;
     private AbsListView mListView;
-    private InfoListViewAdapter mAdapter;
-    private LayoutInflater layoutInflater;
     private ViewGroup containerViewGroup;
 
     public static InfoListFragment newInstance()
@@ -44,15 +41,9 @@ public class InfoListFragment extends Fragment
 
     }
 
-    public void setAdapter(ListAdapter adapter)
-    {
-        mListView.setAdapter(adapter);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        layoutInflater = inflater;
         containerViewGroup = container;
 
         View view = inflater.inflate(R.layout.fragment_info_list, container, false);
@@ -90,7 +81,7 @@ public class InfoListFragment extends Fragment
 
     public void reloadListViewAdapter() {
         if (DataMapper.getSharedInstance().getModestyInfo() != null) {
-            mAdapter = new InfoListViewAdapter(getActivity(), DataMapper.getSharedInstance().getModestyInfo());
+            InfoListViewAdapter mAdapter = new InfoListViewAdapter(getActivity(), DataMapper.getSharedInstance().getModestyInfo());
 
             if (mListView == null) {
                 assert(getActivity() != null);
@@ -98,6 +89,7 @@ public class InfoListFragment extends Fragment
             }
 
             assert(mAdapter != null);
+            assert mListView != null;
             mListView.setAdapter(mAdapter);
 
             mAdapter.notifyDataSetChanged();
@@ -131,6 +123,7 @@ public class InfoListFragment extends Fragment
                             break;
                         case 4:
                             assert(getActivity() != null);
+                            assert(getActivity().getActionBar() != null);
                             getActivity().getActionBar().setSelectedNavigationItem(1);
 
                             break;

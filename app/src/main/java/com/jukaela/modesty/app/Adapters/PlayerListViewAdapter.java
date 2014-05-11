@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Adapters;
+package com.jukaela.modesty.app.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,13 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jukaela.modesty.app.Models.DataMapper;
-import com.jukaela.modesty.app.Models.Player;
-import com.jukaela.modesty.app.Models.Staff;
+import com.jukaela.modesty.app.models.DataMapper;
+import com.jukaela.modesty.app.models.Player;
+import com.jukaela.modesty.app.models.Staff;
 import com.jukaela.modesty.app.R;
-import com.jukaela.modesty.app.Tasks.AvatarTask;
+import com.jukaela.modesty.app.tasks.AvatarTask;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 /**
@@ -50,11 +51,24 @@ public class PlayerListViewAdapter extends ArrayAdapter<Player>
 
         usernameTextView.setText(playerObject.getUsername());
 
-        for (Staff staffMember : DataMapper.getSharedInstance().getStaff()) {
-            if (staffMember.getUsername().equals(playerObject.getUsername())) {
-                rankTextView.setText(staffMember.getRank());
+        try {
+            for (Staff staffMember : DataMapper.getSharedInstance().getStaff()) {
+                if (staffMember.getUsername().equals(playerObject.getUsername())) {
+                    rankTextView.setText(staffMember.getRank());
+                }
             }
         }
+        catch (NullPointerException e) {
+            try {
+                DataMapper.getSharedInstance().staffListing();
+            }
+            catch (MalformedURLException e1) {
+                e1.printStackTrace();
+            }
+
+            e.printStackTrace();
+        }
+
 
         File imageFilename = new File(Environment.getExternalStorageDirectory() + File.separator + playerObject.getUsername() + ".png");
 

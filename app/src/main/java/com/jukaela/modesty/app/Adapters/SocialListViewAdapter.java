@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Adapters;
+package com.jukaela.modesty.app.adapters;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Fragments;
+package com.jukaela.modesty.app.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -12,7 +12,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 
-import com.jukaela.modesty.app.Adapters.SocialListViewAdapter;
+import com.jukaela.modesty.app.adapters.SocialListViewAdapter;
 import com.jukaela.modesty.app.R;
 
 public class SocialFragment extends Fragment
@@ -30,13 +30,12 @@ public class SocialFragment extends Fragment
     /**
      * The fragment's ListView/GridView.
      */
-    public AbsListView listView;
+    private AbsListView listView;
 
     /**
      * The Adapter which will be used to populate the ListView/GridView with
      * Views.
      */
-    public ListAdapter mAdapter;
 
     public static SocialFragment newInstance()
     {
@@ -50,11 +49,6 @@ public class SocialFragment extends Fragment
 
     public SocialFragment() {
 
-    }
-
-    public void setAdapter(ListAdapter adapter)
-    {
-        listView.setAdapter(adapter);
     }
 
     @Override

@@ -1,7 +1,8 @@
-package com.jukaela.modesty.app.Activities;
+package com.jukaela.modesty.app.activities;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,8 +37,11 @@ public class ModestyActivity extends ActionBarActivity
 
     private void setupActionBarFont()
     {
-        this.getSupportActionBar().setDisplayShowCustomEnabled(true);
-        this.getSupportActionBar().setDisplayShowTitleEnabled(false);
+        ActionBar actionBar = this.getSupportActionBar();
+
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.background));
 
         LayoutInflater inflator = LayoutInflater.from(this);
         View view = inflator.inflate(R.layout.titleview, null);
@@ -49,6 +53,6 @@ public class ModestyActivity extends ActionBarActivity
         Typeface minecraftFont = Typeface.createFromAsset(getAssets(), "fonts/minecraft.ttf");
 
         titleTextView.setTypeface(minecraftFont);
-        this.getSupportActionBar().setCustomView(view);
+        actionBar.setCustomView(view);
     }
 }

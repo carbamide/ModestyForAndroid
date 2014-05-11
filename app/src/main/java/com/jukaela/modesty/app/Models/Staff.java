@@ -1,6 +1,4 @@
-package com.jukaela.modesty.app.Models;
-
-import java.net.URL;
+package com.jukaela.modesty.app.models;
 
 /**
  * Created by jbarrow on 5/4/14.  Yay!
@@ -8,13 +6,6 @@ import java.net.URL;
 
 public class Staff
 {
-    private int staffId;
-
-    public void setStaffId(int staffId)
-    {
-        this.staffId = staffId;
-    }
-
     public String getUsername()
     {
         return username;
@@ -35,12 +26,6 @@ public class Staff
         this.rank = rank;
     }
 
-    public void setUrl(URL url)
-    {
-        this.url = url;
-    }
-
     private String username;
     private String rank;
-    private URL url;
 }

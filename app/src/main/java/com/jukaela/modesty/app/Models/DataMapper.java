@@ -1,11 +1,11 @@
-package com.jukaela.modesty.app.Models;
+package com.jukaela.modesty.app.models;
 
 import android.util.Log;
 
-import com.jukaela.modesty.app.Activities.MainActivity;
-import com.jukaela.modesty.app.Tasks.PingTask;
-import com.jukaela.modesty.app.Tasks.ServerInformationTask;
-import com.jukaela.modesty.app.Tasks.StaffListingTask;
+import com.jukaela.modesty.app.activities.MainActivity;
+import com.jukaela.modesty.app.tasks.PingTask;
+import com.jukaela.modesty.app.tasks.ServerInformationTask;
+import com.jukaela.modesty.app.tasks.StaffListingTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -187,10 +187,7 @@ public class DataMapper
             tempServer.setPlugins(pluginArray);
             tempServer.setHostIp(tempDict.getString("HostIp"));
             tempServer.setVersion(tempDict.getString("Version"));
-            tempServer.setSoftware(tempDict.getString("Software"));
-            tempServer.setHostName(tempDict.getString("HostName"));
             tempServer.setMaxPlayers(tempDict.getInt("MaxPlayers"));
-            tempServer.setMap(tempDict.getString("Map"));
             tempServer.setHostPort(tempDict.getInt("HostPort"));
             tempServer.setPlayers(tempDict.getInt("Players"));
 
@@ -213,16 +210,8 @@ public class DataMapper
 
                 Staff tempStaff = new Staff();
 
-                tempStaff.setStaffId(tempJsonObject.getInt("id"));
                 tempStaff.setUsername(tempJsonObject.getString("username"));
                 tempStaff.setRank(tempJsonObject.getString("rank"));
-
-                try {
-                    tempStaff.setUrl(new URL(tempJsonObject.getString("url")));
-                }
-                catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
 
                 tempStaffArray.add(tempStaff);
             }

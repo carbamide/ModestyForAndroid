@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Activities;
+package com.jukaela.modesty.app.activities;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -20,11 +20,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.jukaela.modesty.app.Adapters.PlayerListViewAdapter;
-import com.jukaela.modesty.app.Fragments.InfoListFragment;
-import com.jukaela.modesty.app.Fragments.PlayerFragment;
-import com.jukaela.modesty.app.Fragments.SocialFragment;
-import com.jukaela.modesty.app.Models.DataMapper;
+import com.jukaela.modesty.app.adapters.PlayerListViewAdapter;
+import com.jukaela.modesty.app.fragments.InfoListFragment;
+import com.jukaela.modesty.app.fragments.PlayerFragment;
+import com.jukaela.modesty.app.fragments.SocialFragment;
+import com.jukaela.modesty.app.models.DataMapper;
 import com.jukaela.modesty.app.R;
 
 public class MainActivity extends ModestyActivity implements ActionBar.TabListener, PlayerFragment.OnFragmentInteractionListener, SocialFragment.OnFragmentInteractionListener, InfoListFragment.OnFragmentInteractionListener
@@ -34,8 +34,7 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
     private PlayerFragment playerFragment;
     private SocialFragment socialFragment;
     private InfoListFragment infoListFragment;
-    private ProgressDialog checkModestyConnectionDialog;
-    public TextView titleTextView;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,7 +45,6 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
         final ActionBar actionBar = getActionBar();
         assert actionBar != null;
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.background));
 
         SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
@@ -65,7 +63,6 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
 
         try {
             DataMapper.getSharedInstance().setActivity(this);
-
             DataMapper.getSharedInstance().refreshInformation();
             DataMapper.getSharedInstance().staffListing();
         }
@@ -79,6 +76,7 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
     private void setupActionBarTabFont()
     {
         ActionBar bar = this.getActionBar();
+        assert bar != null;
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         String[] tabNames = {"Info","Players","Social"};
@@ -89,6 +87,7 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
 
             Typeface minecraftFont = Typeface.createFromAsset(getAssets(), "fonts/minecraft.ttf");
 
+            assert customView != null;
             TextView titleTextView = (TextView) customView.findViewById(R.id.action_custom_title);
             titleTextView.setText(tabNames[i]);
             titleTextView.setTypeface(minecraftFont);
@@ -101,6 +100,15 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
             infoListFragment = InfoListFragment.newInstance();
         }
 
+        if (playerFragment == null) {
+            playerFragment = PlayerFragment.newInstance();
+        }
+
+        if (progressDialog != null) {
+            progressDialog.hide();
+        }
+
+        playerFragment.reloadListViewAdapter();
         infoListFragment.reloadListViewAdapter();
     }
 
@@ -117,21 +125,25 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
     {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        if (id == R.id.action_refresh) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Updating Information...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
 
-            alertDialog.setTitle("Not Implemented");
-            alertDialog.setMessage("This function is not yet implemented");
-            alertDialog.setPositiveButton(android.R.string.ok, null);
-
-            alertDialog.setIcon(android.R.drawable.ic_dialog_info);
-            alertDialog.show();
+            try {
+                DataMapper.getSharedInstance().staffListing();
+                DataMapper.getSharedInstance().refreshInformation();
+            }
+            catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
         else if (id == R.id.action_check_connection) {
-            checkModestyConnectionDialog = new ProgressDialog(this);
-            checkModestyConnectionDialog.setMessage("Checking Modesty Connection...");
-            checkModestyConnectionDialog.setCancelable(false);
-            checkModestyConnectionDialog.show();
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Checking Modesty Connection...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
 
             try {
                 DataMapper.getSharedInstance().pingModesty();
@@ -183,7 +195,7 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
     }
 
     public void checkConnectionCallback (Boolean isUp) {
-        checkModestyConnectionDialog.hide();
+        progressDialog.hide();
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 

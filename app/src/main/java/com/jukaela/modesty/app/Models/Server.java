@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Models;
+package com.jukaela.modesty.app.models;
 
 import java.util.ArrayList;
 
@@ -38,16 +38,6 @@ public class Server
         this.plugins = plugins;
     }
 
-    public void setSoftware(String software)
-    {
-        this.software = software;
-    }
-
-    public void setHostName(String hostName)
-    {
-        this.hostName = hostName;
-    }
-
     public int getMaxPlayers()
     {
         return maxPlayers;
@@ -56,11 +46,6 @@ public class Server
     public void setMaxPlayers(int maxPlayers)
     {
         this.maxPlayers = maxPlayers;
-    }
-
-    public void setMap(String map)
-    {
-        this.map = map;
     }
 
     public int getPlayers()
@@ -87,17 +72,9 @@ public class Server
 
     private String version;
 
-    private String gameType;
-
     private ArrayList<String> plugins;
 
-    private String software;
-
-    private String hostName;
-
     private int maxPlayers;
-
-    private String map;
 
     private int players;
 

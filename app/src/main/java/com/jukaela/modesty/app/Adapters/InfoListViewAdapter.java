@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Adapters;
+package com.jukaela.modesty.app.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.jukaela.modesty.app.Models.ModestyInfo;
-import com.jukaela.modesty.app.Models.Server;
+import com.jukaela.modesty.app.models.ModestyInfo;
+import com.jukaela.modesty.app.models.Server;
 
 /**
  * Created by jbarrow on 5/4/14.  Yay!

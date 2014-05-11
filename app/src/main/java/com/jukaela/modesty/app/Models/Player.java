@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Models;
+package com.jukaela.modesty.app.models;
 
 /**
  * Created by jbarrow on 5/4/14.  Yay!

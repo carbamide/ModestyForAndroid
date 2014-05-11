@@ -1,8 +1,8 @@
-package com.jukaela.modesty.app.Tasks;
+package com.jukaela.modesty.app.tasks;
 
 import android.os.AsyncTask;
 
-import com.jukaela.modesty.app.Models.DataMapper;
+import com.jukaela.modesty.app.models.DataMapper;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;

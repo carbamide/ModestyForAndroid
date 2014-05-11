@@ -1,6 +1,5 @@
-package com.jukaela.modesty.app.Activities;
+package com.jukaela.modesty.app.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,17 +11,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.jukaela.modesty.app.Adapters.PluginsListViewAdapter;
-import com.jukaela.modesty.app.Models.DataMapper;
+import com.jukaela.modesty.app.adapters.PluginsListViewAdapter;
+import com.jukaela.modesty.app.models.DataMapper;
 import com.jukaela.modesty.app.R;
 
 import java.util.ArrayList;
 
 
 public class PluginListActivity extends ModestyActivity {
-
-    private ListView listView;
-    private PluginsListViewAdapter listViewAdapter;
 
     private static final String kXpBanker = "http://dev.bukkit.org/bukkit-plugins/xpbanker/";
     private static final String kCaptureCraft = "http://dev.bukkit.org/bukkit-plugins/capture-craft/";
@@ -49,15 +45,16 @@ public class PluginListActivity extends ModestyActivity {
 
             pluginArray.add("And Many More!");
 
-            listViewAdapter = new PluginsListViewAdapter(getApplicationContext(), pluginArray);
+            PluginsListViewAdapter listViewAdapter = new PluginsListViewAdapter(getApplicationContext(), pluginArray);
 
-            listView = (ListView) findViewById(R.id.listView);
+            ListView listView = (ListView) findViewById(R.id.listView);
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
                 @Override
                 public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3)
                 {
-                    String value = (String)adapter.getItemAtPosition(position);
+                    String value = (String) adapter.getItemAtPosition(position);
 
                     if (value.toLowerCase().contains("capturecraft")) {
                         openURLInIntent(kCaptureCraft);
@@ -93,7 +90,7 @@ public class PluginListActivity extends ModestyActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
     private void openURLInIntent(String urlString)

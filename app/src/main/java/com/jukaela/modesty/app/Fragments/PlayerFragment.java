@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Fragments;
+package com.jukaela.modesty.app.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -10,12 +10,13 @@ import android.widget.AbsListView;
 import android.widget.ListAdapter;
 
 import com.jukaela.modesty.app.R;
+import com.jukaela.modesty.app.adapters.PlayerListViewAdapter;
+import com.jukaela.modesty.app.models.DataMapper;
 
 public class PlayerFragment extends Fragment
 {
     private OnFragmentInteractionListener mListener;
-    private AbsListView mListView;
-    public ListAdapter mAdapter;
+    private AbsListView listView;
 
     public static PlayerFragment newInstance()
     {
@@ -31,9 +32,16 @@ public class PlayerFragment extends Fragment
 
     }
 
+    public void reloadListViewAdapter()
+    {
+        if (DataMapper.getSharedInstance().getModestyInfo().getPlayers() != null) {
+            listView.setAdapter(new PlayerListViewAdapter(getActivity().getApplicationContext(), DataMapper.getSharedInstance().getModestyInfo().getPlayers()));
+        }
+    }
+
     public void setAdapter(ListAdapter adapter)
     {
-        mListView.setAdapter(adapter);
+        listView.setAdapter(adapter);
     }
 
     @Override
@@ -42,7 +50,7 @@ public class PlayerFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_player_list, container, false);
 
         assert view != null;
-        mListView = (AbsListView) view.findViewById(android.R.id.list);
+        listView = (AbsListView) view.findViewById(android.R.id.list);
 
         return view;
     }
