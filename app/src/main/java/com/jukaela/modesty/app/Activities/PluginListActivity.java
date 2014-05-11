@@ -1,4 +1,4 @@
-package com.jukaela.modesty.app.Fragments;
+package com.jukaela.modesty.app.Activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,7 +19,7 @@ import com.jukaela.modesty.app.R;
 import java.util.ArrayList;
 
 
-public class PluginListActivity extends Activity {
+public class PluginListActivity extends ModestyActivity {
 
     private ListView listView;
     private PluginsListViewAdapter listViewAdapter;
@@ -82,7 +82,6 @@ public class PluginListActivity extends Activity {
             }
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

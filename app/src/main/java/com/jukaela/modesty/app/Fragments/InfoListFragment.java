@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.jukaela.modesty.app.Activities.PluginListActivity;
 import com.jukaela.modesty.app.Activities.StaffListActivity;
 import com.jukaela.modesty.app.Adapters.InfoListViewAdapter;
 import com.jukaela.modesty.app.Models.DataMapper;

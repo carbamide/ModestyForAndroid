@@ -10,12 +10,15 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.graphics.Typeface;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.jukaela.modesty.app.Adapters.PlayerListViewAdapter;
 import com.jukaela.modesty.app.Fragments.InfoListFragment;
@@ -24,18 +27,15 @@ import com.jukaela.modesty.app.Fragments.SocialFragment;
 import com.jukaela.modesty.app.Models.DataMapper;
 import com.jukaela.modesty.app.R;
 
-import org.json.JSONException;
-
-
-public class MainActivity extends ActionBarActivity implements ActionBar.TabListener, PlayerFragment.OnFragmentInteractionListener, SocialFragment.OnFragmentInteractionListener, InfoListFragment.OnFragmentInteractionListener
+public class MainActivity extends ModestyActivity implements ActionBar.TabListener, PlayerFragment.OnFragmentInteractionListener, SocialFragment.OnFragmentInteractionListener, InfoListFragment.OnFragmentInteractionListener
 {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private PlayerFragment playerFragment;
     private SocialFragment socialFragment;
     private InfoListFragment infoListFragment;
     private ProgressDialog checkModestyConnectionDialog;
+    public TextView titleTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,8 +46,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         final ActionBar actionBar = getActionBar();
         assert actionBar != null;
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.background));
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -71,8 +72,30 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
+        setupActionBarTabFont();
     }
 
+    private void setupActionBarTabFont()
+    {
+        ActionBar bar = this.getActionBar();
+        bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        String[] tabNames = {"Info","Players","Social"};
+
+        for(int i = 0; i<bar.getTabCount(); i++){
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View customView = inflater.inflate(R.layout.tab_title, null);
+
+            Typeface minecraftFont = Typeface.createFromAsset(getAssets(), "fonts/minecraft.ttf");
+
+            TextView titleTextView = (TextView) customView.findViewById(R.id.action_custom_title);
+            titleTextView.setText(tabNames[i]);
+            titleTextView.setTypeface(minecraftFont);
+
+            bar.getTabAt(i).setCustomView(customView);
+        }
+    }
     public void reloadListViewAdapter() {
         if (infoListFragment == null) {
             infoListFragment = InfoListFragment.newInstance();
