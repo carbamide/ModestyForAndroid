@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.jukaela.modesty.app.R;
 import com.jukaela.modesty.app.models.ModestyInfo;
 import com.jukaela.modesty.app.models.Server;
 
@@ -39,17 +40,17 @@ public class InfoListViewAdapter extends BaseAdapter implements ListAdapter
 
         switch (position) {
             case 0:
-                return "Host";
+                return activity.getString(R.string.host_string);
             case 1:
-                return "Port";
+                return activity.getString(R.string.port_string);
             case 2:
-                return "Version";
+                return activity.getString(R.string.version_string);
             case 3:
-                return "Staff";
+                return activity.getString(R.string.staff_string);
             case 4:
-                return "Players";
+                return activity.getString(R.string.players_string);
             case 5:
-                return "Plugins";
+                return activity.getString(R.string.plugins_string);
             default:
                 return "";
         }
@@ -75,33 +76,33 @@ public class InfoListViewAdapter extends BaseAdapter implements ListAdapter
 
         switch (position) {
             case 0:
-                titleTextView.setText("Host");
+                titleTextView.setText(activity.getString(R.string.host_string));
                 detailTextView.setText(tempServer.getHostIp());
 
                 break;
             case 1:
-                titleTextView.setText("Port");
+                titleTextView.setText(activity.getString(R.string.port_string));
                 detailTextView.setText(Integer.toString(tempServer.getHostPort()));
 
                 break;
             case 2:
-                titleTextView.setText("Version");
+                titleTextView.setText(activity.getString(R.string.version_string));
                 detailTextView.setText(tempServer.getVersion());
 
                 break;
             case 3:
-                titleTextView.setText("Staff");
-                detailTextView.setText("Staff Listing, along with Ranks");
+                titleTextView.setText(activity.getString(R.string.staff_string));
+                detailTextView.setText(activity.getString(R.string.staff_description_string));
 
                 break;
             case 4:
-                titleTextView.setText("Players");
-                detailTextView.setText(tempServer.getPlayers() + " of " + tempServer.getMaxPlayers() + " max players");
+                titleTextView.setText(activity.getString(R.string.players_string));
+                detailTextView.setText(tempServer.getPlayers() + activity.getString(R.string.of_string) + tempServer.getMaxPlayers() + activity.getString(R.string.max_players_string));
 
                 break;
             case 5:
-                titleTextView.setText("Plugins");
-                detailTextView.setText("Plugin Information and More!");
+                titleTextView.setText(activity.getString(R.string.plugins_string));
+                detailTextView.setText(activity.getString(R.string.plugin_description_string));
 
                 break;
         }

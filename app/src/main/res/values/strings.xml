@@ -10,5 +10,35 @@
     <string name="title_activity_modesty">ModestyActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="accessing_modesty_string">Accessing Modesty Information...</string>
+    <string name="has_been_copied_string">The server address and port have been copied to your clipboard.  You can now paste the address anywhere you like.</string>
+    <string name="copied_string">Copied</string>
+    <string name="modesty_server_information_string">Modesty Server Information</string>
+    <string name="info_string">Info</string>
+    <string name="players_string">Players</string>
+    <string name="social_string">Social</string>
+    <string name="updating_information_string">Updating Information...</string>
+    <string name="checking_modesty_information_string">Checking Modesty Connection...</string>
+    <string name="modesty_is_up_title_string">Modesty is Up!</string>
+    <string name="modesty_is_up_string">Modesty appears to be up! Yay!</string>
+    <string name="modesty_is_down_title_string">Modesty is Down!</string><string name="modesty_is_down_string">Modsety appears to be down! :-(
+The information display may not be current or correct.</string>
+    <string name="modesty_string">Modesty</string>
+    <string name="host_string">Host</string>
+    <string name="port_string">Port</string>
+    <string name="version_string">Version</string>
+    <string name="staff_string">Staff</string>
+    <string name="plugins_string">Plugins</string>
+    <string name="staff_description_string">Staff Listing, along with Ranks</string>
+    <string name="of_string"> of </string>
+    <string name="max_players_string"> max players</string>
+    <string name="plugin_description_string">Plugin Information and More!</string>
+    <string name="twitter_string">Twitter</string>
+    <string name="instagram_string">Instagram</string>
+    <string name="facebook_string">Facebook</string>
+    <string name="modesty_forums_string">Modesty Forums</string>
+    <string name="planetminecraft_string">PlanetMinecraft</string>
+    <string name="minecraftservers_org_string">Minecraftservers.org</string>
+    <string name="minecraft_servers_list_string">Minecraft Servers List</string>
 
 </resources>

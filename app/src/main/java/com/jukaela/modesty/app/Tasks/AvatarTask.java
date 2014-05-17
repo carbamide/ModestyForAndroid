@@ -87,17 +87,19 @@ public class AvatarTask extends AsyncTask<String, Void, Bitmap> {
 
         File folder = new File(Environment.getExternalStorageDirectory() + File.separator + ".modesty");
 
-        folder.mkdir();
+        if (!folder.mkdir()) {
+            Log.d("Modesty", "An undefined error occurred while creating the .modesty folder.");
+        }
 
         File imageFilename = new File(folder, username + ".png");
 
         boolean newFile = imageFilename.createNewFile();
 
         if (newFile) {
-            FileOutputStream fo = new FileOutputStream(imageFilename);
-            fo.write(bytes.toByteArray());
+            FileOutputStream outputStream = new FileOutputStream(imageFilename);
+            outputStream.write(bytes.toByteArray());
 
-            fo.close();
+            outputStream.close();
         }
         else {
             Log.d("Modesty", "An error has occurred writing the file to disk");

@@ -3,6 +3,7 @@ package com.jukaela.modesty.app.fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import com.jukaela.modesty.app.models.DataMapper;
 
 public class PlayerFragment extends Fragment
 {
-    private OnFragmentInteractionListener mListener;
     private AbsListView listView;
 
     public static PlayerFragment newInstance()
@@ -60,7 +60,7 @@ public class PlayerFragment extends Fragment
     {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            Log.d("Modesty", "Activity implements OnFragmentInteractionListener");
         }
         catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement OnFragmentInteractionListener");
@@ -72,7 +72,6 @@ public class PlayerFragment extends Fragment
     {
         super.onDetach();
 
-        mListener = null;
     }
 
     public interface OnFragmentInteractionListener

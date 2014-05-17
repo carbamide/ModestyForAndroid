@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.jukaela.modesty.app.R;
+
 /**
  * Created by jbarrow on 5/4/14.  Yay!
  */
@@ -33,19 +35,19 @@ public class SocialListViewAdapter extends BaseAdapter implements ListAdapter
 
         switch (position) {
             case 0:
-                return "Twitter";
+                return activity.getString(R.string.twitter_string);
             case 1:
-                return "Instagram";
+                return activity.getString(R.string.instagram_string);
             case 2:
-                return "Facebook";
+                return activity.getString(R.string.facebook_string);
             case 3:
-                return "Modesty Forums";
+                return activity.getString(R.string.modesty_forums_string);
             case 4:
-                return "PlanetMinecraft";
+                return activity.getString(R.string.planetminecraft_string);
             case 5:
-                return "Minecraftservers.org";
+                return activity.getString(R.string.minecraftservers_org_string);
             case 6:
-                return "Minecraft Servers List";
+                return activity.getString(R.string.minecraft_servers_list_string);
             default:
                 return "";
         }
@@ -68,31 +70,31 @@ public class SocialListViewAdapter extends BaseAdapter implements ListAdapter
 
         switch (position) {
             case 0:
-                titleTextView.setText("Twitter");
+                titleTextView.setText(activity.getString(R.string.twitter_string));
 
                 break;
             case 1:
-                titleTextView.setText("Instagram");
+                titleTextView.setText(activity.getString(R.string.instagram_string));
 
                 break;
             case 2:
-                titleTextView.setText("Facebook");
+                titleTextView.setText(activity.getString(R.string.facebook_string));
 
                 break;
             case 3:
-                titleTextView.setText("Modesty Forums");
+                titleTextView.setText(activity.getString(R.string.modesty_forums_string));
 
                 break;
             case 4:
-                titleTextView.setText("PlanetMinecraft");
+                titleTextView.setText(activity.getString(R.string.planetminecraft_string));
 
                 break;
             case 5:
-                titleTextView.setText("Minecraftservers.org");
+                titleTextView.setText(activity.getString(R.string.minecraftservers_org_string));
 
                 break;
             case 6:
-                titleTextView.setText("Minecraft Servers List");
+                titleTextView.setText(activity.getString(R.string.minecraft_servers_list_string));
 
                 break;
         }

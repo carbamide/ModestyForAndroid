@@ -5,12 +5,12 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 
 import com.jukaela.modesty.app.adapters.SocialListViewAdapter;
 import com.jukaela.modesty.app.R;
@@ -24,13 +24,6 @@ public class SocialFragment extends Fragment
     private static final String kMinecraftServerList = "http://minecraft-server-list.com/server/128633/vote/";
     private static final String kFacebookURL = "https://www.facebook.com/minecraftmodesty";
     private static final String kForumURL = "http://www.minecraftmodesty.enjin.com/forum";
-
-    private OnFragmentInteractionListener mListener;
-
-    /**
-     * The fragment's ListView/GridView.
-     */
-    private AbsListView listView;
 
     /**
      * The Adapter which will be used to populate the ListView/GridView with
@@ -57,7 +50,10 @@ public class SocialFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_social_list, container, false);
 
         assert view != null;
-        listView = (AbsListView) view.findViewById(android.R.id.list);
+        /*
+      The fragment's ListView/GridView.
+     */
+        AbsListView listView = (AbsListView) view.findViewById(android.R.id.list);
         listView.setAdapter(new SocialListViewAdapter(getActivity()));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -108,7 +104,7 @@ public class SocialFragment extends Fragment
     {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            Log.d("Modesty", "Activity implements OnFragmentInteractionListener");
         }
         catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement OnFragmentInteractionListener");
@@ -119,13 +115,10 @@ public class SocialFragment extends Fragment
     public void onDetach()
     {
         super.onDetach();
-
-        mListener = null;
     }
 
     public interface OnFragmentInteractionListener
     {
-        public void onFragmentInteraction(String id);
     }
 
     private void openURLInIntent(String urlString)

@@ -79,9 +79,9 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
         assert bar != null;
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        String[] tabNames = {"Info","Players","Social"};
+        String[] tabNames = {getString(R.string.info_string), getString(R.string.players_string), getString(R.string.social_string)};
 
-        for(int i = 0; i<bar.getTabCount(); i++){
+        for(int i = 0; i < bar.getTabCount(); i++){
             LayoutInflater inflater = LayoutInflater.from(this);
             View customView = inflater.inflate(R.layout.tab_title, null);
 
@@ -127,7 +127,7 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
 
         if (id == R.id.action_refresh) {
             progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Updating Information...");
+            progressDialog.setMessage(getString(R.string.updating_information_string));
             progressDialog.setCancelable(false);
             progressDialog.show();
 
@@ -141,7 +141,7 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
         }
         else if (id == R.id.action_check_connection) {
             progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Checking Modesty Connection...");
+            progressDialog.setMessage(getString(R.string.checking_modesty_information_string));
             progressDialog.setCancelable(false);
             progressDialog.show();
 
@@ -188,7 +188,6 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
     {
     }
 
-    @Override
     public void onFragmentInteraction(String id)
     {
 
@@ -200,15 +199,15 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
         if (isUp) {
-            alertDialog.setTitle("Modesty is Up!");
-            alertDialog.setMessage("Modesty appears to be up! Yay!");
+            alertDialog.setTitle(getString(R.string.modesty_is_up_title_string));
+            alertDialog.setMessage(getString(R.string.modesty_is_up_string));
             alertDialog.setPositiveButton(android.R.string.ok, null);
 
             alertDialog.setIcon(android.R.drawable.ic_dialog_info);
         }
         else {
-            alertDialog.setTitle("Modesty is Down!");
-            alertDialog.setMessage("Modsety appears to be down! :-(\nThe information display may not be current or correct.");
+            alertDialog.setTitle(getString(R.string.modesty_is_down_title_string));
+            alertDialog.setMessage(getString(R.string.modesty_is_down_string));
             alertDialog.setPositiveButton(android.R.string.ok, null);
 
             alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
@@ -263,11 +262,11 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
 
             switch (position) {
                 case 0:
-                    return "Modesty";
+                    return getString(R.string.modesty_string);
                 case 1:
-                    return "Players";
+                    return getString(R.string.players_string);
                 case 2:
-                    return "Social";
+                    return getString(R.string.social_string);
             }
             return null;
         }
