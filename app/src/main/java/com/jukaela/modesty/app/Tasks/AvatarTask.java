@@ -52,10 +52,8 @@ public class AvatarTask extends AsyncTask<String, Void, Bitmap> {
 
         ImageView imageView = imageViewReference.get();
 
-        if (imageView != null) {
-            if (bitmap != null) {
-                imageView.setImageBitmap(bitmap);
-            }
+        if ((imageView != null) && (bitmap != null)) {
+            imageView.setImageBitmap(bitmap);
         }
     }
 
@@ -88,10 +86,18 @@ public class AvatarTask extends AsyncTask<String, Void, Bitmap> {
         File folder = new File(Environment.getExternalStorageDirectory() + File.separator + ".modesty");
 
         if (!folder.mkdir()) {
-            Log.d("Modesty", "An undefined error occurred while creating the .modesty folder.");
+            Log.d("Modesty", "The .modesty folder already exists.");
         }
 
         File imageFilename = new File(folder, username + ".png");
+
+        if (imageFilename.exists()) {
+            boolean deleteFile = imageFilename.delete();
+
+            if (!deleteFile) {
+                Log.d("Modesty", "Unable to delete " + username + ".png");
+            }
+        }
 
         boolean newFile = imageFilename.createNewFile();
 

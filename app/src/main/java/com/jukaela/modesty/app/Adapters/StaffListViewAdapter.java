@@ -58,6 +58,8 @@ public class StaffListViewAdapter extends ArrayAdapter<Staff>
 
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
+
+            new AvatarTask(null).execute(staffObject.getUsername());
         }
         else {
             new AvatarTask(imageView).execute(staffObject.getUsername());
