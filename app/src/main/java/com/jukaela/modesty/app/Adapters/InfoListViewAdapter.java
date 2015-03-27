@@ -97,7 +97,7 @@ public class InfoListViewAdapter extends BaseAdapter implements ListAdapter
                 break;
             case 4:
                 titleTextView.setText(activity.getString(R.string.players_string));
-                detailTextView.setText(tempServer.getPlayers() + " " + activity.getString(R.string.of_string) + " " + tempServer.getMaxPlayers() + activity.getString(R.string.max_players_string));
+                detailTextView.setText(String.format("%d %s %d %s", tempServer.getPlayers(), activity.getString(R.string.of_string), tempServer.getMaxPlayers(), activity.getString(R.string.max_players_string)));
 
                 break;
             case 5:

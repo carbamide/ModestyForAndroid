@@ -27,7 +27,7 @@ import com.jukaela.modesty.app.fragments.SocialFragment;
 import com.jukaela.modesty.app.models.DataMapper;
 import com.jukaela.modesty.app.R;
 
-public class MainActivity extends ModestyActivity implements ActionBar.TabListener, PlayerFragment.OnFragmentInteractionListener, SocialFragment.OnFragmentInteractionListener, InfoListFragment.OnFragmentInteractionListener
+public class MainActivity extends ModestyActivity implements android.support.v7.app.ActionBar.TabListener, PlayerFragment.OnFragmentInteractionListener, SocialFragment.OnFragmentInteractionListener, InfoListFragment.OnFragmentInteractionListener
 {
 
     private ViewPager mViewPager;
@@ -42,7 +42,7 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ActionBar actionBar = getActionBar();
+        final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -75,7 +75,7 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
 
     private void setupActionBarTabFont()
     {
-        ActionBar bar = this.getActionBar();
+        android.support.v7.app.ActionBar bar = this.getSupportActionBar();
         assert bar != null;
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -156,38 +156,6 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
         return true;
     }
 
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction)
-    {
-        mViewPager.setCurrentItem(tab.getPosition());
-
-        switch (tab.getPosition()) {
-            case 0:
-                if (DataMapper.getSharedInstance().getModestyInfo() != null) {
-                    if (infoListFragment != null) {
-                        infoListFragment.reloadListViewAdapter();
-                    }
-                }
-                break;
-            case 1:
-                if (DataMapper.getSharedInstance().getModestyInfo().getPlayers() != null) {
-                    playerFragment.setAdapter(new PlayerListViewAdapter(getApplicationContext(), DataMapper.getSharedInstance().getModestyInfo().getPlayers()));
-                }
-
-                break;
-        }
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction)
-    {
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction)
-    {
-    }
-
     public void onFragmentInteraction(String id)
     {
 
@@ -215,6 +183,41 @@ public class MainActivity extends ModestyActivity implements ActionBar.TabListen
 
         alertDialog.show();
     }
+
+    @Override
+    public void onTabSelected(android.support.v7.app.ActionBar.Tab tab, android.support.v4.app.FragmentTransaction fragmentTransaction)
+    {
+        mViewPager.setCurrentItem(tab.getPosition());
+
+        switch (tab.getPosition()) {
+            case 0:
+                if (DataMapper.getSharedInstance().getModestyInfo() != null) {
+                    if (infoListFragment != null) {
+                        infoListFragment.reloadListViewAdapter();
+                    }
+                }
+                break;
+            case 1:
+                if (DataMapper.getSharedInstance().getModestyInfo().getPlayers() != null) {
+                    playerFragment.setAdapter(new PlayerListViewAdapter(getApplicationContext(), DataMapper.getSharedInstance().getModestyInfo().getPlayers()));
+                }
+
+                break;
+        }
+    }
+
+    @Override
+    public void onTabUnselected(android.support.v7.app.ActionBar.Tab tab, android.support.v4.app.FragmentTransaction fragmentTransaction)
+    {
+
+    }
+
+    @Override
+    public void onTabReselected(android.support.v7.app.ActionBar.Tab tab, android.support.v4.app.FragmentTransaction fragmentTransaction)
+    {
+
+    }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm)

@@ -17,6 +17,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.jukaela.modesty.app.activities.MainActivity;
 import com.jukaela.modesty.app.activities.PluginListActivity;
 import com.jukaela.modesty.app.activities.StaffListActivity;
 import com.jukaela.modesty.app.adapters.InfoListViewAdapter;
@@ -137,9 +138,9 @@ public class InfoListFragment extends Fragment
 
                             break;
                         case 4:
-                            assert(getActivity() != null);
-                            assert(getActivity().getActionBar() != null);
-                            getActivity().getActionBar().setSelectedNavigationItem(1);
+                            MainActivity activity = (MainActivity) getActivity();
+
+                            activity.getSupportActionBar().setSelectedNavigationItem(1);
 
                             break;
                         case 5:
